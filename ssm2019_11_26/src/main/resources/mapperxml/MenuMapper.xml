@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MenuMapper">
+
+    <select id="selectUserMenu" resultType="com.domain.Menu" parameterType="com.domain.User">
+
+        select DISTINCT(c.id),c.pid,c.name,c.url,c.target,c.open
+        from usermidrole a
+        inner join rolemidmenu b on a.roleid = b.roleid
+        inner join menu c on b.menuid = c.id
+        where a.userid = #{id}
+    </select>
+
+</mapper>
